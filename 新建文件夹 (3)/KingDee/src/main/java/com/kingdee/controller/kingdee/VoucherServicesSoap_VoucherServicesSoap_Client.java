@@ -34,7 +34,7 @@ public final class VoucherServicesSoap_VoucherServicesSoap_Client {
         {
 
             String name = "张三";
-            String fullname = 李四
+            String fullname = "李四";
             String incomeMoney = "1000";
             String afterMoney = "1000";
             String afterMoney2 = "1000";

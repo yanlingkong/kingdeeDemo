@@ -142,7 +142,7 @@ public class AppUserController {
             int iAisID = 4;
             //客户账户
             String strUser = "administrator";
-            String password = "****";
+            String password = "";
             System.out.println("增加客户");
             URL wsdlURL2 = CustomerService.WSDL_LOCATION;
             CustomerService ss2 = new CustomerService(wsdlURL2, SERVICE_NAME2);
