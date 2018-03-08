@@ -1,0 +1,35 @@
+# 服务端口
+server.port=7077
+
+#server.context-path=/bj_hxbx
+api.qianrui.fund-url=http://www.hurongsoft.net:8273/hurong_proj_bj_hxbx/funds/fundInfoReceiveFundInfo.do
+api.qianrui.order-url=http://www.hurongsoft.net:8273/hurong_proj_bj_hxbx/order/orderInfoPushOrderInfo.do
+
+
+#ftp
+api.qianrui.ftp.ip=192.168.0.106
+api.qianrui.ftp.ftpPort=33
+api.qianrui.ftp.ftpUser=hxbx
+api.qianrui.ftp.ftpPassword=123456
+
+#sftp
+api.qianrui.sftp.sftpIp=113.108.233.40
+api.qianrui.sftp.sftpUser=abcdsftp
+api.qianrui.sftp.sftpPassword=9fKYkjKH
+api.qianrui.sftp.sftpPort=763
+
+
+#yanyou sftp
+api.yanyou.sftp.sftpIp=101.201.237.24
+#api.yanyou.sftp.sftpUser=attachFile
+api.yanyou.sftp.sftpUser=sftpuser
+#api.yanyou.sftp.sftpPassword=Hrsd@2017
+api.yanyou.sftp.sftpPassword=123456
+api.yanyou.sftp.sftpPort=22
+
+
+#an bang ftp
+api.anbang.ftp.ip=192.168.0.106
+api.anbang.ftp.ftpPort=33
+api.anbang.ftp.ftpUser=hxbx
+api.anbang.ftp.ftpPassword=123456

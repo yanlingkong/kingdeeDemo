@@ -1,0 +1,9 @@
+# 多环境配置文件激活属性
+spring.profiles.active=dev
+server.port=8080
+server.compression.enabled=true
+spring.mvc.servlet.load-on-startup=1
+
+#shrot url 配置
+shorturl.source=5786724301
+shorturl.url=http://api.weibo.com/2/short_url/shorten.json
