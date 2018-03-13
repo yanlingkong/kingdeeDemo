@@ -1,0 +1,142 @@
+package com.kingdee.controller.kingdeeAction;
+
+import com.kingdee.controller.kingdee.*;
+import com.kingdee.model.AppUser;
+import com.kingdee.service.ParameterConversionService;
+import com.kingdee.utils.MapUtil;
+import com.kingdee.utils.WebClient;
+import com.kingdee.utils.WebClient2;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.xml.namespace.QName;
+import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * User: liuc
+ * Date: 2017/6/12
+ * Time: 10:56
+ */
+@RestController
+@RequestMapping("/system")
+@Slf4j
+@Api(description = "测试金蝶")
+public class AppUserController {
+
+
+    private static final QName SERVICE_NAME = new QName("http://www.kingdee.com/VoucherData", "VoucherServices");
+
+    @ApiOperation(value = "测试金蝶",
+            notes = "测试金蝶",
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "userName", value = "测试金蝶", required = false, paramType = "form", dataType = "String")
+    })
+    @PostMapping(value = "/kingdee.do")
+    public String kingdee(@RequestParam (value="userName", required = false) String userName){
+            URL wsdlURL = VoucherServices.WSDL_LOCATION;
+            VoucherServices ss = new VoucherServices( wsdlURL, SERVICE_NAME );
+            VoucherServicesSoap port = ss.getVoucherServicesSoap();
+
+            System.out.println( "userName=================="+userName);
+            System.out.println( "Invoking update..." );
+            ArrayOfVoucher av = new ArrayOfVoucher();
+            Voucher vouchera = new Voucher();
+            Date date = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd" );
+            String str = sdf.format( date );
+            vouchera.setFDate( str );//日期（日期必须在当前凭证期间） 填写
+            vouchera.setFExplanation( "产品入库_调压阀" );//日期（日期必须在当前凭证期间）
+            vouchera.setFAttachments( 0L );//附件数量    默认0 填写
+            vouchera.setFCashier( "NONE" );//出纳员  默认 none 填写
+            vouchera.setFGroup( "调" );//凭证字   记 填写
+            vouchera.setFHandler( "administrator" ); //会计主管   填 ""
+            vouchera.setFNumber( 22L );  //凭证号 填写
+            vouchera.setFPeriod( 11L );  //期间（凭证期间必须开启）
+            vouchera.setFPoster( "administrator" );  //记账人   默认 none
+            vouchera.setFReference( "" );  //参考信息 填 ""
+            vouchera.setFPreparer( "administrator" ); //制单人 填写
+            vouchera.setFSerialNum( 180L );   //凭证序号
+            vouchera.setFTransDate( str );   //发生日期
+            vouchera.setFYear( 2017L );   //发生日期
+
+            CashFlow cf = new CashFlow();
+            cf = null;
+            Entries entries0 = new Entries();
+
+            entries0.setFAmount( 1000.00 ); //金额   永通需要传的字段信息 填写
+            entries0.setFAmountFor( 1000.00 ); //外币金额
+            entries0.setFCurrencyName( "人民币" ); //币种名称
+            entries0.setFCurrencyNumber( "RMB" );  //币种代码     RMB
+            entries0.setFDC( 0L ); //0-贷方,1- 借方 填写
+            entries0.detailEntries = null;
+            entries0.setFEntryID( 0L ); //分录entryID
+            entries0.setFExchangeRate( 0.00 );//汇率  非必录
+            entries0.setFExplanation( "产品入库_调压阀" );//凭证摘要 填写
+            entries0.setFMeasureUnitUUID( "" );//非必录
+            entries0.fQuantity = 0.00;
+            entries0.setFSettleNo( "" );//非必录
+            entries0.setFSettleTypeName( "" );//非必录
+            entries0.setFTransNo( "" );//非必录
+            entries0.fUnitPrice = 0.00;
+            entries0.setFAccountNumber( "1001" ); //科目编码 填写
+            entries0.setFAccountName( "库存现金" ); //科目名称 填写
+            entries0.setFMeasureUnit( "" ); //非必录
+
+            Entries entries1 = new Entries();
+
+            entries1.setFAmount( 1000.00 ); //金额   永通需要传的字段信息
+            entries1.setFAmountFor( 1000.00 ); //外币金额
+            entries1.setFCurrencyName( "人民币" ); //币种名称
+            entries1.setFCurrencyNumber( "RMB" );  //币种代码     RMB
+            entries1.setFDC( 1L ); //0-贷方,1- 借方
+            entries1.detailEntries = null;
+            entries1.setFEntryID( 0L ); //分录entryID
+            entries1.setFExchangeRate( 0.00 );//汇率  非必录
+            entries1.setFExplanation( "产品入库_调压阀" );//凭证摘要
+            entries1.setFMeasureUnitUUID( "" );//非必录
+            entries1.fQuantity = 0.00;
+            entries1.setFSettleNo( "" );//非必录
+            entries1.setFSettleTypeName( "" );//非必录
+            entries1.setFTransNo( "" );//非必录
+            entries1.fUnitPrice = 0.00;
+            entries1.setFAccountNumber( "1001" ); //科目编码
+            entries1.setFAccountName( "库存现金" ); //科目名称
+            entries1.setFMeasureUnit( "" ); //非必录
+
+            vouchera.getEntries().add( entries0 );
+            vouchera.getEntries().add( entries1 );
+            vouchera.getCashFlow().add( cf );
+
+            av.getVoucher().add( vouchera );
+
+
+            int _update_iAisID = 1;
+            String _update_strUser = "administrator";
+            String _update_strPassword = "";
+            ArrayOfVoucher _update_data = av;
+            boolean _update_bCheckByUUID = false;
+            boolean _update_bAddNewOnly = false;
+            int _update_iBillClassTypeID = 0;
+            javax.xml.ws.Holder<Boolean> _update_updateResult = new javax.xml.ws.Holder<Boolean>();
+            javax.xml.ws.Holder<String> _update_strError = new javax.xml.ws.Holder<String>();
+            port.update( _update_iAisID, _update_strUser, _update_strPassword, _update_data, _update_bCheckByUUID, _update_bAddNewOnly, _update_iBillClassTypeID, _update_updateResult, _update_strError );
+
+            System.out.println( "update._update_updateResult=" + _update_updateResult.value );
+            System.out.println( "update._update_strError=" + _update_strError.value );
+
+
+        return null;
+    }
+}

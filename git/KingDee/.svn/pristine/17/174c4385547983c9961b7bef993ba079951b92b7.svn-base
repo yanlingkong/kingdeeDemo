@@ -1,0 +1,47 @@
+{
+  "hints": [],
+  "properties": [
+    {
+      "sourceType": "com.kingdee.configuration.properties.ShortUrlProperties",
+      "name": "shorturl.source",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.kingdee.configuration.properties.ShortUrlProperties",
+      "name": "shorturl.source",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.kingdee.configuration.properties.ShortUrlProperties",
+      "name": "shorturl.url",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.kingdee.configuration.properties.ShortUrlProperties",
+      "name": "shorturl.url",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.kingdee.configuration.properties.config.BaseProperties",
+      "name": "smallLoan.base-url",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.kingdee.configuration.properties.config.BaseProperties",
+      "name": "smallLoan.base-url",
+      "type": "java.lang.String"
+    }
+  ],
+  "groups": [
+    {
+      "sourceType": "com.kingdee.configuration.properties.ShortUrlProperties",
+      "name": "shorturl",
+      "type": "com.kingdee.configuration.properties.ShortUrlProperties"
+    },
+    {
+      "sourceType": "com.kingdee.configuration.properties.config.BaseProperties",
+      "name": "smallLoan",
+      "type": "com.kingdee.configuration.properties.config.BaseProperties"
+    }
+  ]
+}
